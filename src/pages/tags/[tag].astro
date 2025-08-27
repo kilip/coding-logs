@@ -1,0 +1,24 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import { getPosts } from "@/lib/posts";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return [
+    { params: { tag: "uncategorized" }, props: { posts } },
+    { params: { tag: "test" }, props: { posts } },
+    { params: { tag: "community" }, props: { posts } },
+    { params: { tag: "blogging" }, props: { posts } },
+    { params: { tag: "setbacks" }, props: { posts } },
+    { params: { tag: "learning in public" }, props: { posts } },
+  ];
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+const filterd = posts.filter((post) => post.data.tags?.includes(tag));
+---
+
+<MainLayout title={`${tag} Posts`}>
+  <h1>{tag}</h1>
+</MainLayout>

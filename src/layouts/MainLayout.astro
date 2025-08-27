@@ -1,0 +1,33 @@
+---
+import Navbar from "@/components/navbar.astro";
+import Footer from "@/layouts/footer.astro";
+
+import "@/styles/custom.css";
+
+import "@fontsource/inconsolata/300.css";
+import "@fontsource/inconsolata/400.css";
+import "@fontsource/inconsolata/500.css";
+import "@fontsource/inconsolata/700.css";
+import "@fontsource/inconsolata/900.css";
+
+type Props = {
+  title?: string;
+};
+
+const { title } = Astro.props as Props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title ?? "Coding Logs"}</title>
+  </head>
+  <body>
+    <Navbar />
+    <slot />
+    <Footer />
+  </body>
+</html>

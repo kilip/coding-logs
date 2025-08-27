@@ -1,0 +1,24 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import { getPosts } from "@/lib/posts";
+import { render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { id } = Astro.params;
+---
+
+<MainLayout title={post.data.title}>
+  <h1>{post.data.title}</h1>
+  <div>
+    <a href="/coding-logs">Back</a>
+  </div>
+</MainLayout>

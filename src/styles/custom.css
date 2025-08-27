@@ -1,0 +1,9 @@
+@import "./global.css";
+
+h1 {
+  @apply text-3xl font-extrabold;
+}
+
+h2 {
+  @apply text-2xl font-extrabold;
+}

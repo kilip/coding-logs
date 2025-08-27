@@ -1,0 +1,20 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import { getPosts, createExcerpt } from "@/lib/posts";
+
+const posts = await getPosts();
+console.log(posts);
+---
+
+<MainLayout>
+  {
+    posts.map((post) => (
+      <>
+        <h1>{post.data.title}</h1>
+        <h3>{post.data.published}</h3>
+        <p>{createExcerpt(post.body)}</p>
+        <a href={`/coding-logs/articles/${post.id}`}>Read More</a>
+      </>
+    ))
+  }
+</MainLayout>
